@@ -1,12 +1,14 @@
-package intern.BGGStart.Tests;
+package intern.BGGStart.tests;
 
 import com.codeborne.selenide.*;
-import intern.BGGStart.Fragments.MainHeader;
-import intern.BGGStart.Fragments.SignInModal;
-import intern.BGGStart.Fragments.UserMenuDropDown;
-import intern.BGGStart.PageObject.*;
+import intern.BGGStart.fragments.MainHeader;
+import intern.BGGStart.fragments.SignInModal;
+import intern.BGGStart.fragments.UserMenuDropDown;
+import intern.BGGStart.pageObject.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,7 +20,7 @@ import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
 public class CheckLanguageDependenceTest {
 
-    @Before
+    @BeforeEach
     public void setup(){
         if (Configuration.browser.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
@@ -32,15 +34,17 @@ public class CheckLanguageDependenceTest {
         Configuration.baseUrl = "https://boardgamegeek.com";
     }
 
-    @After
+    @AfterEach
     public void teardown(){
         WebDriverRunner.driver().getWebDriver().close();
         WebDriverRunner.driver().getWebDriver().quit();
     }
 
-//    @Ignore
-    @Test
-    public void CheckLanguageDependence(){
+//    @Disabled
+    @DisplayName("Check Language Dependence")
+    @ParameterizedTest
+    @ValueSource(ints = {17})
+    public void CheckLanguageDependence(int number){
         HomePage homepage = new HomePage();
         homepage.open();
         homepage.openSignInModal();
@@ -57,13 +61,12 @@ public class CheckLanguageDependenceTest {
         userHomePage.openUserDropDownMenu();
 
         UserMenuDropDown userMenuDropDown = new UserMenuDropDown();
-        userMenuDropDown.returnsUserMenuDropDownSize().shouldHave(size(17));
+        userMenuDropDown.returnsUserMenuDropDownSize().shouldHave(size(number));
         userMenuDropDown.menuAction(COLLECTION);
 
         CollectionPage collectionPage = new CollectionPage();
         collectionPage.checkBoardGameCollectionName();
         collectionPage.goToGamePageWithUsageOfCollectionsShuffle();
-        collectionPage.returnsGameHeaderWithGameTitle();
 
         GamePage gamePage = new GamePage();
         gamePage.checkIfGameNameIsEqualToGameNameFromUserCollection();

@@ -1,4 +1,4 @@
-package intern.BGGStart.Resources;
+package intern.BGGStart.resources;
 
 public class DataResources {
 

@@ -1,7 +1,7 @@
-package intern.BGGStart.PageObject;
+package intern.BGGStart.pageObject;
 
 import com.codeborne.selenide.SelenideElement;
-import intern.BGGStart.Resources.DataResources;
+import intern.BGGStart.resources.DataResources;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;

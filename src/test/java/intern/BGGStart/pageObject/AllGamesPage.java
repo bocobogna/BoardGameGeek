@@ -1,4 +1,4 @@
-package intern.BGGStart.PageObject;
+package intern.BGGStart.pageObject;
 
 import com.codeborne.selenide.*;
 

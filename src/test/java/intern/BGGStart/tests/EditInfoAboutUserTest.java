@@ -1,14 +1,14 @@
-package intern.BGGStart.Tests;
+package intern.BGGStart.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import intern.BGGStart.Fragments.MainHeader;
-import intern.BGGStart.Fragments.SignInModal;
-import intern.BGGStart.Fragments.UserMenuDropDown;
-import intern.BGGStart.PageObject.*;
-import intern.BGGStart.Resources.DataResources;
+import intern.BGGStart.fragments.MainHeader;
+import intern.BGGStart.fragments.SignInModal;
+import intern.BGGStart.fragments.UserMenuDropDown;
+import intern.BGGStart.pageObject.*;
+import intern.BGGStart.resources.DataResources;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,7 +20,7 @@ import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
 public class EditInfoAboutUserTest {
 
-    @Before
+    @BeforeEach
     public void setup(){
         if (Configuration.browser.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
@@ -34,13 +34,13 @@ public class EditInfoAboutUserTest {
         Configuration.baseUrl = "https://boardgamegeek.com";
     }
 
-    @After
+    @AfterEach
     public void teardown(){
         WebDriverRunner.driver().getWebDriver().close();
         WebDriverRunner.driver().getWebDriver().quit();
     }
 
-//    @Ignore
+    @Disabled
     @Test
     public void editInfoAboutUser() {
         HomePage homepage = new HomePage();

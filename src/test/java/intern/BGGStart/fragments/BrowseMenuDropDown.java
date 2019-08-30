@@ -1,4 +1,4 @@
-package intern.BGGStart.Fragments;
+package intern.BGGStart.fragments;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

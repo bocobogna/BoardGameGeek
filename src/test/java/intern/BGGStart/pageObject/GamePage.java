@@ -1,4 +1,4 @@
-package intern.BGGStart.PageObject;
+package intern.BGGStart.pageObject;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -40,19 +40,19 @@ public class GamePage {
         XmlPath xmlPath = get(path + itemID).xmlPath();
         String pollPath = "boardgames.boardgame.poll.find{it.@name=='language_dependence'}.results.result";
 
-        int totalVotes = xmlPath
-                .getInt("boardgames.boardgame.poll.find{it.@name=='language_dependence'}.@totalvotes");
-
-        mostVotedLanguageDependence = (totalVotes > 0) ?
-                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()") + "'}.@value")
+        int maxVotes = xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()");
+        mostVotedLanguageDependence = maxVotes > 0 ?
+                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + maxVotes + "'}.@value")
                 : "(no votes)";
-
+    }
 /*   !! Can be wtire like this but looks like crap :P
         mostVotedLanguageDependence = (xmlPath.getInt("boardgames.boardgame.poll.find{it.@name=='language_dependence'}.@totalvotes") > 0) ?
                 xmlPath.getString(pollPath + ".find{it.@numvotes=='" + xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()") + "'}.@value")
                 : "(no votes)";
     !! Very long way of writing the same things
-/*        if (totalVotes > 0) {
+     int totalVotes = xmlPath
+                .getInt("boardgames.boardgame.poll.find{it.@name=='language_dependence'}.@totalvotes");
+       if (totalVotes > 0) {
             maxVotes = xmlPath
                     .getInt(pollPath + ".@numvotes.list()*.toInteger().max()");
             System.out.println("Max votes: " + maxVotes);
@@ -64,16 +64,11 @@ public class GamePage {
             mostVotedLanguageDependence = "(no votes)";
             System.out.println("--> :( <-- Nobody votes for this game Language Dependence.");
         }
+        mostVotedLanguageDependence = (totalVotes > 0) ?
+                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()") + "'}.@value")
+                : "(no votes)";
+ */
 
-        XmlPath xmlPath = get(path + itemID).xmlPath();
-        String pollPath = "boardgames.boardgame.poll.find{it.@name=='language_dependence'}.results.result";
-
-        int maxVotes = xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()");
-    !! Null pointer when there is no voices
-        mostVotedLanguageDependence = maxVotes > 0 ?
-                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + maxVotes + "'}.@value")
-                : "(no votes)";*/
-    }
 
     public SelenideElement checkIfMostVotedLanguageDependenceValueIsDisplayed() {
         return languageDependenceValue
@@ -87,7 +82,7 @@ public class GamePage {
                 .click();
         addToCollectionSaveButton
                 .shouldBe(visible)
-                .click();
+                .hover().pressEnter();
         gameAddedConfirmationNotify
                 .should(appear);
     }

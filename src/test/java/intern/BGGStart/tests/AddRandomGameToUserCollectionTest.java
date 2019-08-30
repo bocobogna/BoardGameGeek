@@ -1,14 +1,14 @@
-package intern.BGGStart.Tests;
+package intern.BGGStart.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import intern.BGGStart.Fragments.BrowseMenuDropDown;
-import intern.BGGStart.Fragments.MainHeader;
-import intern.BGGStart.Fragments.SignInModal;
-import intern.BGGStart.Fragments.UserMenuDropDown;
-import intern.BGGStart.PageObject.*;
+import intern.BGGStart.fragments.BrowseMenuDropDown;
+import intern.BGGStart.fragments.MainHeader;
+import intern.BGGStart.fragments.SignInModal;
+import intern.BGGStart.fragments.UserMenuDropDown;
+import intern.BGGStart.pageObject.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,7 +21,7 @@ import static intern.BGGStart.enums.UserMenuOption.*;
 
 public class AddRandomGameToUserCollectionTest {
 
-    @Before
+    @BeforeEach
     public void setup(){
         if (Configuration.browser.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
@@ -35,15 +35,15 @@ public class AddRandomGameToUserCollectionTest {
         Configuration.baseUrl = "https://boardgamegeek.com";
     }
 
-    @After
+    @AfterEach
     public void teardown(){
         WebDriverRunner.driver().getWebDriver().close();
         WebDriverRunner.driver().getWebDriver().quit();
     }
 
-//    @Ignore
+    @Disabled
     @Test
-    public void AddRandomGameToUserCollection(){
+    void AddRandomGameToUserCollection(){
 
         HomePage homepage = new HomePage();
         homepage.open();

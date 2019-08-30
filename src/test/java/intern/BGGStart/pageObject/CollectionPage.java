@@ -1,4 +1,4 @@
-package intern.BGGStart.PageObject;
+package intern.BGGStart.pageObject;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -16,7 +16,6 @@ public class CollectionPage {
     public static String gameNameShuffleFromCollection;
     private List<String> userGamesCollection;
     private ElementsCollection gamesCollection = $$(byXpath("//div[contains(@id,'results_objectname')]/a"));
-    private SelenideElement gameHeaderTitle = $(byXpath("//div[@class='game-primary ng-scope']//div[@class='game-header-title-container']"));
     private SelenideElement userBoardGameCollectionName = $("div.fl.sf");
 
     public SelenideElement checkBoardGameCollectionName(){
@@ -32,10 +31,10 @@ public class CollectionPage {
         gamesCollection.findBy(Condition.text(gameNameShuffleFromCollection)).click();
     }
 
-    public SelenideElement returnsGameHeaderWithGameTitle(){
-        return gameHeaderTitle
-                .shouldBe(visible)
-                .shouldHave(text(gameNameShuffleFromCollection));
+    public void goToGameWithNoVotes(){
+        userGamesCollection = gamesCollection.texts();
+        gameNameShuffleFromCollection = "5211"; // Age of Steam
+        gamesCollection.findBy(Condition.text(gameNameShuffleFromCollection)).click();
     }
 
     public Boolean checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection(){
