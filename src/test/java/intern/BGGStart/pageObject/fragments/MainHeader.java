@@ -1,4 +1,4 @@
-package intern.BGGStart.fragments;
+package intern.BGGStart.pageObject.fragments;
 
 import com.codeborne.selenide.SelenideElement;
 

@@ -11,8 +11,9 @@ public class HomePage {
 
     private SelenideElement signInLink = $(byXpath("//button[@login-required]"));
 
-    public void open() {
+    public HomePage open() {
         Selenide.open("");
+        return this;
     }
 
     public void openSignInModal() {

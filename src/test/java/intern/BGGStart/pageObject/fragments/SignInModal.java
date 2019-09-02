@@ -1,14 +1,14 @@
-package intern.BGGStart.fragments;
+package intern.BGGStart.pageObject.fragments;
 
 import com.codeborne.selenide.SelenideElement;
-import intern.BGGStart.resources.DataResources;
+import intern.BGGStart.utils.DataResources;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
+import static intern.BGGStart.utils.DataResources.*;
 
 public class SignInModal {
 
-    private final String password = "qweasdzxc";
     private SelenideElement userNameInput = $("#inputUsername");
     private SelenideElement passwordInput = $("#inputPassword");
     private SelenideElement loginForm = $("div.modal-content");
@@ -20,8 +20,8 @@ public class SignInModal {
                 .shouldHave(matchText("Sign in"));
         userNameInput
                 .shouldBe(visible)
-                .val(DataResources.userName)
-                .shouldHave(value(DataResources.userName));
+                .val(userName)
+                .shouldHave(value(userName));
         passwordInput
                 .shouldBe(visible)
                 .val(password)

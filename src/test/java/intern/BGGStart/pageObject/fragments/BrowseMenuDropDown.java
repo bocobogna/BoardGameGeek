@@ -1,4 +1,4 @@
-package intern.BGGStart.fragments;
+package intern.BGGStart.pageObject.fragments;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -21,9 +21,10 @@ public class BrowseMenuDropDown {
                 .click();
     }
 
-    public ElementsCollection returnsBrowseMenuSize(){
+    public ElementsCollection browserMenuList(){
         return browseMenuDropDown
                 .shouldBe(visible)
+                .should(matchesText(".*All Boardgames.*Categories.*Families.*Random Game.*"))
                 .$$("li");
     }
 }

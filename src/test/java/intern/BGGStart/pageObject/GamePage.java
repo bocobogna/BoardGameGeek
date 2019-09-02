@@ -1,18 +1,18 @@
 package intern.BGGStart.pageObject;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import intern.BGGStart.api.Api;
 import io.restassured.path.xml.XmlPath;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
+import static intern.BGGStart.api.Api.mostVotedLanguageDependence;
 import static io.restassured.RestAssured.get;
 
 public class GamePage {
 
-    private String itemID, mostVotedLanguageDependence;
-    private String path = "https://www.boardgamegeek.com/xmlapi/boardgame/";
+    public static String itemID;
     private SelenideElement itemIDValue = $("div.game-itemid.ng-binding");
     private SelenideElement languageDependenceValue = $("div.feature-description span.ng-binding");
     private SelenideElement addToCollectionButton = $(byXpath("//div[@class='toolbar-actions']//button[contains(@class, 'toolbar-action-full')]"));
@@ -35,40 +35,6 @@ public class GamePage {
     public void getGameID() {
         itemID = itemIDValue.getText().substring(13);
     }
-
-    public void checkLanguageDependence() {
-        XmlPath xmlPath = get(path + itemID).xmlPath();
-        String pollPath = "boardgames.boardgame.poll.find{it.@name=='language_dependence'}.results.result";
-
-        int maxVotes = xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()");
-        mostVotedLanguageDependence = maxVotes > 0 ?
-                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + maxVotes + "'}.@value")
-                : "(no votes)";
-    }
-/*   !! Can be wtire like this but looks like crap :P
-        mostVotedLanguageDependence = (xmlPath.getInt("boardgames.boardgame.poll.find{it.@name=='language_dependence'}.@totalvotes") > 0) ?
-                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()") + "'}.@value")
-                : "(no votes)";
-    !! Very long way of writing the same things
-     int totalVotes = xmlPath
-                .getInt("boardgames.boardgame.poll.find{it.@name=='language_dependence'}.@totalvotes");
-       if (totalVotes > 0) {
-            maxVotes = xmlPath
-                    .getInt(pollPath + ".@numvotes.list()*.toInteger().max()");
-            System.out.println("Max votes: " + maxVotes);
-
-            mostVotedLanguageDependence = xmlPath
-                    .getString(pollPath + ".find{it.@numvotes=='" + maxVotes + "'}.@value");
-            System.out.println("Category with max voices: " + mostVotedLanguageDependence);
-        } else {
-            mostVotedLanguageDependence = "(no votes)";
-            System.out.println("--> :( <-- Nobody votes for this game Language Dependence.");
-        }
-        mostVotedLanguageDependence = (totalVotes > 0) ?
-                xmlPath.getString(pollPath + ".find{it.@numvotes=='" + xmlPath.getInt(pollPath + ".@numvotes.list()*.toInteger().max()") + "'}.@value")
-                : "(no votes)";
- */
-
 
     public SelenideElement checkIfMostVotedLanguageDependenceValueIsDisplayed() {
         return languageDependenceValue
