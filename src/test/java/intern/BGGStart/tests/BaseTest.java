@@ -36,9 +36,8 @@ public abstract class BaseTest {
     public static void setup() {
         if (Configuration.browser.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
-            options.setExperimentalOption("w3c", false);
             options.addArguments("start-maximized");
-            WebDriverManager.chromedriver().version("76.0.3809.68").setup();
+            WebDriverManager.chromedriver().version("76.0.3809.126").setup();
             WebDriver webDriver = new ChromeDriver(options);
             setWebDriver(webDriver);
         }
@@ -56,10 +55,13 @@ public abstract class BaseTest {
         homepage.open()
                 .openSignInModal();
 
-        mainHeader.checkIfUserIsLoggedOut();
+        mainHeader
+                .checkIfUserIsLoggedOut();
 
-        loginForm.loginUser();
+        loginForm
+                .loginUser();
 
-        mainHeader.checkIfUserIsLoggedIn();
+        mainHeader
+                .checkIfUserIsLoggedIn();
     }
 }

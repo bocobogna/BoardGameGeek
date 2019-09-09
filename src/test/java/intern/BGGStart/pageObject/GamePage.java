@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static intern.BGGStart.api.Api.mostVotedLanguageDependence;
+import static intern.BGGStart.pageObject.AllGamesPage.*;
+import static intern.BGGStart.pageObject.CollectionPage.*;
 import static io.restassured.RestAssured.get;
 
 public class GamePage {
@@ -23,13 +25,13 @@ public class GamePage {
     public void checkIfGameNameIsEqualToGameNameFromUserCollection(){
         gameHeaderTitle
                 .shouldBe(visible)
-                .should(matchText(CollectionPage.gameNameShuffleFromCollection));
+                .should(matchText(gameNameShuffleFromCollection));
     }
 
     public void checkIfGameNameIsEqualToGameNameFromAllBoardGames(){
         gameHeaderTitle
                 .shouldBe(visible)
-                .should(matchText(AllGamesPage.randomGameNameShuffleFromAllBoardGames));
+                .should(matchText(randomGameNameShuffleFromAllBoardGames));
     }
 
     public void getGameID() {

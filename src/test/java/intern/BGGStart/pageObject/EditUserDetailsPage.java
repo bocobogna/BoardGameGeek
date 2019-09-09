@@ -1,11 +1,11 @@
 package intern.BGGStart.pageObject;
 
 import com.codeborne.selenide.SelenideElement;
-import intern.BGGStart.utils.DataResources;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selectors.byXpath;
+import static intern.BGGStart.utils.DataResources.*;
 
 public class EditUserDetailsPage {
 
@@ -25,21 +25,21 @@ public class EditUserDetailsPage {
     public void editUserDetails(){
         firstNameInput
                 .shouldBe(visible)
-                .val(DataResources.firstName)
-                .shouldHave(value(DataResources.firstName));
+                .val(firstName)
+                .shouldHave(value(firstName));
         lastNameInput
                 .shouldBe(visible)
-                .val(DataResources.lastName)
-                .shouldHave(value(DataResources.lastName));
+                .val(lastName)
+                .shouldHave(value(lastName));
         cityInput
                 .shouldBe(visible)
-                .val(DataResources.cityName)
-                .shouldHave(value(DataResources.cityName));
+                .val(cityName)
+                .shouldHave(value(cityName));
         countrySelect
                 .shouldBe(visible)
-                .selectOptionByValue(DataResources.countryName);
+                .selectOptionByValue(countryName);
         countrySelect
-                .shouldHave(value(DataResources.countryName));
+                .shouldHave(value(countryName));
 
         firstNameValue = firstNameInput.getValue();
         lastNameValue = lastNameInput.getValue();

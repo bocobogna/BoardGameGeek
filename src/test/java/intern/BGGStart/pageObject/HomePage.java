@@ -18,7 +18,8 @@ public class HomePage {
 
     public void openSignInModal() {
         signInLink
-                .shouldBe(visible).click();
+                .shouldBe(visible)
+                .click();
     }
 
 }

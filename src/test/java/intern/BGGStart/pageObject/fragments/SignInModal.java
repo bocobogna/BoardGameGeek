@@ -1,7 +1,6 @@
 package intern.BGGStart.pageObject.fragments;
 
 import com.codeborne.selenide.SelenideElement;
-import intern.BGGStart.utils.DataResources;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -25,7 +24,8 @@ public class SignInModal {
         passwordInput
                 .shouldBe(visible)
                 .val(password)
-                .shouldNot(empty).submit();
+                .shouldNot(empty)
+                .submit();
     }
 
 }
