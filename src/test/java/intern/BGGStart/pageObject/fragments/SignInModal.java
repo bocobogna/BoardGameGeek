@@ -13,7 +13,7 @@ public class SignInModal {
     private SelenideElement loginForm = $("div.modal-content");
 
 
-    public void loginUser (){
+    public SignInModal loginUser (){
         loginForm
                 .shouldBe(visible)
                 .shouldHave(matchText("Sign in"));
@@ -26,6 +26,7 @@ public class SignInModal {
                 .val(password)
                 .shouldNot(empty)
                 .submit();
+        return this;
     }
 
 }

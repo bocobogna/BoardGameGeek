@@ -1,5 +1,6 @@
 package intern.BGGStart.tests;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -7,39 +8,55 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static intern.BGGStart.enums.BrowseMenuOption.*;
 import static intern.BGGStart.enums.UserMenuOption.*;
 
-//@Disabled
+@Disabled
 public class AddRandomGameToUserCollectionTest extends BaseTest{
 
     @ParameterizedTest(name = "{index} => size14={0}, size17={1}")
     @CsvSource({"14, 17"})
     void AddRandomGameToUserCollection(int size14, int size17){
         logInUser();
-        userHomePage.openBrowseDropDownMenu();
+        pages.userHomePage
+                .openBrowseDropDownMenu();
 
-        browseMenuDropDown.browserMenuList().shouldHave(size(size14));
-        browseMenuDropDown.menuOption(ALL_BOARDGAMES);
+        pages.browseMenuDropDown
+                .browserMenuList()
+                .shouldHave(size(size14));
+        pages.browseMenuDropDown
+                .menuOption(ALL_BOARDGAMES);
 
-        allGamesPage.checkIfAllGamesPageIsOpened();
-        allGamesPage.openRandomPageWithGames();
-        allGamesPage.goToRandomGamePage();
+        pages.allGamesPage.checkIfAllGamesPageIsOpened()
+                .openRandomPageWithGames()
+                .goToRandomGamePage();
 
-        gamePage.checkIfGameNameIsEqualToGameNameFromAllBoardGames();
-        gamePage.addGameToCollection();
+        pages.gamePage
+                .checkIfGameNameIsEqualToGameNameFromAllBoardGames()
+                .addGameToCollection();
 
-        userHomePage.openUserDropDownMenu();
+        pages.userHomePage
+                .openUserDropDownMenu();
 
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(size17));
-        userMenuDropDown.menuAction(COLLECTION);
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(size17));
+        pages.userMenuDropDown
+                .menuAction(COLLECTION);
 
-        collectionPage.checkBoardGameCollectionName();
-        collectionPage.checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection();
+        pages.collectionPage
+                .checkBoardGameCollectionName();
+        pages.collectionPage
+                .checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection();
 
-        userHomePage.openUserDropDownMenu();
+        pages.userHomePage
+                .openUserDropDownMenu();
 
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(size17));
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(size17));
 
-        userMenuDropDown.menuAction(SIGN_OUT);
-        mainHeader.checkIfUserIsLoggedOut();
+        pages.userMenuDropDown
+                .menuAction(SIGN_OUT);
+        pages.mainHeader
+                .checkIfUserIsLoggedOut();
 
     }
 }

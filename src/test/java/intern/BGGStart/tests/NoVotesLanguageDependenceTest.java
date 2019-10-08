@@ -15,24 +15,38 @@ public class NoVotesLanguageDependenceTest extends BaseTest{
     @ValueSource(ints = {17})
     public void CheckLanguageDependence(int number) {
         logInUser();
-        userHomePage.openUserDropDownMenu();
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(number));
-        userMenuDropDown.menuAction(COLLECTION);
+        pages.userHomePage
+                .openUserDropDownMenu();
 
-        collectionPage.checkBoardGameCollectionName();
-        collectionPage.goToGameWithNoVotes();
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(number));
+        pages.userMenuDropDown
+                .menuAction(COLLECTION);
 
-        gamePage.checkIfGameNameIsEqualToGameNameFromUserCollection();
-        gamePage.getGameID();
+        pages.collectionPage
+                .checkBoardGameCollectionName();
+        pages.collectionPage
+                .goToGameWithNoVotes();
 
-        api.languageDependence();
+        pages.gamePage
+                .checkIfGameNameIsEqualToGameNameFromUserCollection()
+                .getGameID();
 
-        gamePage.checkIfMostVotedLanguageDependenceValueIsDisplayed();
+        pages.api
+                .getLanguageDependence();
 
-        userHomePage.openUserDropDownMenu();
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(number));
-        userMenuDropDown.menuAction(SIGN_OUT);
+        pages.gamePage
+                .checkIfMostVotedLanguageDependenceValueIsDisplayed();
 
-        mainHeader.checkIfUserIsLoggedOut();
+        pages.userHomePage.openUserDropDownMenu();
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(number));
+        pages.userMenuDropDown
+                .menuAction(SIGN_OUT);
+
+        pages.mainHeader
+                .checkIfUserIsLoggedOut();
     }
 }

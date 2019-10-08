@@ -21,14 +21,15 @@ public class AllGamesPage {
     private SelenideElement maxPageValue = $(byXpath("//div[@class='fr']//a[@title='last page']"));
     private ElementsCollection gamesCollection = $$(byXpath("//div[contains(@id, 'results_objectname')]/a"));
 
-    public void checkIfAllGamesPageIsOpened(){
+    public AllGamesPage checkIfAllGamesPageIsOpened(){
         collectionTable
                 .shouldBe(visible)
                 .$$("tr")
                 .shouldHaveSize(101);
+        return this;
     }
 
-    public void openRandomPageWithGames() {
+    public AllGamesPage openRandomPageWithGames() {
         lastPageStr = maxPageValue.getText();
         lastPageStr = lastPageStr.substring(1, lastPageStr.length() - 1);
         lastPageInt = Integer.parseInt(lastPageStr);
@@ -36,13 +37,15 @@ public class AllGamesPage {
         Selenide.open("https://boardgamegeek.com/browse/boardgame/page/" + helper);
         gamesCollection
                 .shouldHave(size(100));
+        return this;
     }
 
-    public void goToRandomGamePage() {
+    public AllGamesPage goToRandomGamePage() {
         List<String> gamesAvailableOnChosenPage = gamesCollection.texts();
         Collections.shuffle(gamesAvailableOnChosenPage);
         randomGameNameShuffleFromAllBoardGames = gamesAvailableOnChosenPage.get(0);
         gamesCollection.findBy(text(randomGameNameShuffleFromAllBoardGames)).click();
+        return this;
     }
 
 }

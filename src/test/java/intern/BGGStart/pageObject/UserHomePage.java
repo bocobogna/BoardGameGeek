@@ -11,16 +11,18 @@ public class UserHomePage {
     private SelenideElement userNameButton = $(byXpath ("//button[@class='btn btn-sm dropdown-toggle']"));
     private SelenideElement browseButton = $(byXpath("//button[contains(text(),'Browse')]"));
 
-    public void openUserDropDownMenu(){
+    public UserHomePage openUserDropDownMenu(){
         userNameButton
                 .shouldBe(visible)
                 .click();
+        return this;
     }
 
-    public void openBrowseDropDownMenu() {
+    public UserHomePage openBrowseDropDownMenu() {
         browseButton
                 .shouldBe(visible)
                 .click();
+        return this;
      }
 
 

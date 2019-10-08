@@ -22,20 +22,23 @@ public class GamePage {
     private SelenideElement gameAddedConfirmationNotify = $(byXpath("//span[contains(text(),'Item added to')]"));
     private SelenideElement gameHeaderTitle = $("div.game-primary.ng-scope div.game-header-title-info a");
 
-    public void checkIfGameNameIsEqualToGameNameFromUserCollection(){
+    public GamePage checkIfGameNameIsEqualToGameNameFromUserCollection(){
         gameHeaderTitle
                 .shouldBe(visible)
                 .should(matchText(gameNameShuffleFromCollection));
+        return this;
     }
 
-    public void checkIfGameNameIsEqualToGameNameFromAllBoardGames(){
+    public GamePage checkIfGameNameIsEqualToGameNameFromAllBoardGames(){
         gameHeaderTitle
                 .shouldBe(visible)
                 .should(matchText(randomGameNameShuffleFromAllBoardGames));
+        return this;
     }
 
-    public void getGameID() {
+    public GamePage getGameID() {
         itemID = itemIDValue.getText().substring(13);
+        return this;
     }
 
     public SelenideElement checkIfMostVotedLanguageDependenceValueIsDisplayed() {
@@ -44,7 +47,7 @@ public class GamePage {
                 .shouldHave(text(mostVotedLanguageDependence));
     }
 
-    public void addGameToCollection() {
+    public GamePage addGameToCollection() {
         addToCollectionButton
                 .shouldBe(visible)
                 .click();
@@ -53,5 +56,6 @@ public class GamePage {
                 .hover().pressEnter();
         gameAddedConfirmationNotify
                 .should(appear);
+        return  this;
     }
 }

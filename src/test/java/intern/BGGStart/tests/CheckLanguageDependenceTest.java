@@ -8,33 +8,46 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-@Disabled
+//@Disabled
 public class CheckLanguageDependenceTest extends BaseTest{
 
     @ParameterizedTest
     @ValueSource(ints = {17})
     public void CheckLanguageDependence(int number){
         logInUser();
-        userHomePage.openUserDropDownMenu();
 
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(number));
-        userMenuDropDown.menuAction(COLLECTION);
+        pages.userHomePage
+            .openUserDropDownMenu();
 
-        collectionPage.checkBoardGameCollectionName();
-        collectionPage.goToGamePageWithUsageOfCollectionsShuffle();
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(number));
+        pages.userMenuDropDown
+                .menuAction(COLLECTION);
 
-        gamePage.checkIfGameNameIsEqualToGameNameFromUserCollection();
-        gamePage.getGameID();
+        pages.collectionPage
+                .checkBoardGameCollectionName();
+        pages.collectionPage
+                .goToGamePageWithUsageOfCollectionsShuffle();
 
-        api.languageDependence();
+        pages.gamePage
+                .checkIfGameNameIsEqualToGameNameFromUserCollection()
+                .getGameID();
 
-        gamePage.checkIfMostVotedLanguageDependenceValueIsDisplayed();
+        pages.api
+                .getLanguageDependence();
 
-        userHomePage.openUserDropDownMenu();
+        pages.gamePage
+                .checkIfMostVotedLanguageDependenceValueIsDisplayed();
 
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(number));
-        userMenuDropDown.menuAction(SIGN_OUT);
+        pages.userHomePage
+                .openUserDropDownMenu();
 
-        mainHeader.checkIfUserIsLoggedOut();
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(number));
+        pages.userMenuDropDown.menuAction(SIGN_OUT);
+
+        pages.mainHeader.checkIfUserIsLoggedOut();
     }
 }

@@ -16,26 +16,35 @@ public class EditInfoAboutUserTest extends BaseTest{
     @ValueSource(ints = {17})
     public void editInfoAboutUser(int number) {
         logInUser();
-        userHomePage.openUserDropDownMenu();
+        pages.userHomePage
+                .openUserDropDownMenu();
 
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(number));
-        userMenuDropDown.menuAction(PROFILE);
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(number));
+        pages.userMenuDropDown.menuAction(PROFILE);
 
-        userProfilePage.checkIfEditProfileElementsAreVisible();
-        userProfilePage.goToEditUserDetails();
+        pages.userProfilePage.checkIfEditProfileElementsAreVisible()
+                .goToEditUserDetails();
 
-        editUserDetailsPage.checkEditUserDetailHeaderVisibility();
-        editUserDetailsPage.editUserDetails();
+        pages.editUserDetailsPage
+                .checkEditUserDetailHeaderVisibility()
+                .editUserDetails();
 
-        userProfilePage.checkIfProfileWasUpdated();
-        userProfilePage.checkUserFirstAndLastName(firstName, lastName);
-        userProfilePage.checkIfCountryAndCityNameWasUpdated(countryName, cityName);
+        pages.userProfilePage.checkIfProfileWasUpdated()
+                .checkUserFirstAndLastName(firstName, lastName)
+                .checkIfCountryAndCityNameWasUpdated(countryName, cityName);
 
-        userHomePage.openUserDropDownMenu();
+        pages.userHomePage
+                .openUserDropDownMenu();
 
-        userMenuDropDown.userMenuDropDownList().shouldHave(size(number));
-        userMenuDropDown.menuAction(SIGN_OUT);
+        pages.userMenuDropDown
+                .userMenuDropDownList()
+                .shouldHave(size(number));
+        pages.userMenuDropDown
+                .menuAction(SIGN_OUT);
 
-        mainHeader.checkIfUserIsLoggedOut();
+        pages.mainHeader
+                .checkIfUserIsLoggedOut();
     }
 }

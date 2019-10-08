@@ -18,11 +18,12 @@ public class EditUserDetailsPage {
 
     private static String firstNameValue, lastNameValue, cityValue, countryValue;
 
-    public void checkEditUserDetailHeaderVisibility(){
+    public EditUserDetailsPage checkEditUserDetailHeaderVisibility(){
         editUserDetailHeader.shouldBe(visible).shouldHave(text("Contact Information"));
+        return this;
     }
 
-    public void editUserDetails(){
+    public EditUserDetailsPage editUserDetails(){
         firstNameInput
                 .shouldBe(visible)
                 .val(firstName)
@@ -49,5 +50,6 @@ public class EditUserDetailsPage {
         submitButton
                 .shouldBe(visible)
                 .click();
+        return this;
     }
 }

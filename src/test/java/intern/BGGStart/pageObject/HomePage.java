@@ -16,10 +16,11 @@ public class HomePage {
         return this;
     }
 
-    public void openSignInModal() {
+    public HomePage openSignInModal() {
         signInLink
                 .shouldBe(visible)
                 .click();
+        return this;
     }
 
 }

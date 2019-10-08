@@ -21,6 +21,8 @@ public class UserMenuDropDown {
     }
 
     public void menuAction(UserMenuOption menuOption){
-        userMenuDropDownElements.findBy(text(menuOption.getOption())).click();
+        userMenuDropDownElements
+                .findBy(text(menuOption.getOption()))
+                .click();
     }
 }

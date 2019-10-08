@@ -24,17 +24,19 @@ public class CollectionPage {
                 .shouldHave(matchText("Board Game Collection"));
     }
 
-    public void goToGamePageWithUsageOfCollectionsShuffle(){
+    public CollectionPage goToGamePageWithUsageOfCollectionsShuffle(){
         userGamesCollection = gamesCollection.texts();
         Collections.shuffle(userGamesCollection);
         gameNameShuffleFromCollection = userGamesCollection.get(0);
         gamesCollection.findBy(text(gameNameShuffleFromCollection)).click();
+        return this;
     }
 
-    public void goToGameWithNoVotes(){
+    public CollectionPage goToGameWithNoVotes(){
         userGamesCollection = gamesCollection.texts();
         gameNameShuffleFromCollection = "5211"; // Age of Steam
         gamesCollection.findBy(text(gameNameShuffleFromCollection)).click();
+        return this;
     }
 
     public Boolean checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection(){

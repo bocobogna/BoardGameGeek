@@ -11,7 +11,7 @@ public class MainHeader {
     private SelenideElement globalHeader = $("div.global-header-nav-primary-wrapper");
     private SelenideElement signInLink = $(byXpath("//button[@login-required]"));
 
-    public void checkIfUserIsLoggedIn(){
+    public MainHeader checkIfUserIsLoggedIn(){
         globalHeader
                 .shouldBe(visible)
                 .$("i.fi-megaphone")
@@ -20,12 +20,14 @@ public class MainHeader {
                 .shouldBe(visible)
                 .$("i.fi-mail")
                 .shouldBe(visible);
+        return  this;
     }
 
-    public void checkIfUserIsLoggedOut(){
+    public MainHeader checkIfUserIsLoggedOut(){
         signInLink
                 .shouldBe(visible)
                 .should(matchText(".*Sign.*In.*"));
+        return this;
     }
 
 }

@@ -19,18 +19,7 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public abstract class BaseTest {
 
-    HomePage homepage = new HomePage();
-    MainHeader mainHeader = new MainHeader();
-    SignInModal loginForm = new SignInModal();
-    UserHomePage userHomePage = new UserHomePage();
-    UserMenuDropDown userMenuDropDown = new UserMenuDropDown();
-    UserProfilePage userProfilePage = new UserProfilePage();
-    EditUserDetailsPage editUserDetailsPage = new EditUserDetailsPage();
-    BrowseMenuDropDown browseMenuDropDown = new BrowseMenuDropDown();
-    AllGamesPage allGamesPage = new AllGamesPage();
-    GamePage gamePage = new GamePage();
-    CollectionPage collectionPage = new CollectionPage();
-    Api api = new Api();
+    Pages pages = new Pages();
 
     @BeforeAll
     public static void setup() {
@@ -52,16 +41,16 @@ public abstract class BaseTest {
     }
 
     protected void logInUser(){
-        homepage.open()
+        pages.homePage.open()
                 .openSignInModal();
 
-        mainHeader
+        pages.mainHeader
                 .checkIfUserIsLoggedOut();
 
-        loginForm
+        pages.loginForm
                 .loginUser();
 
-        mainHeader
+        pages.mainHeader
                 .checkIfUserIsLoggedIn();
     }
 }
