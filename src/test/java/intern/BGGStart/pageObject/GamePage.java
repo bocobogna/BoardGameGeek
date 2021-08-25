@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.get;
 public class GamePage {
 
     public static String itemID;
-    private SelenideElement itemIDValue = $("div.game-itemid.ng-binding");
+    private SelenideElement itemIDValue = $("div.game-itemid");
     private SelenideElement languageDependenceValue = $("div.feature-description span.ng-binding");
     private SelenideElement addToCollectionButton = $(byXpath("//div[@class='toolbar-actions']//button[contains(@class, 'toolbar-action-full')]"));
     private SelenideElement addToCollectionSaveButton = $(byXpath("//button[contains(text(),'Save')]"));

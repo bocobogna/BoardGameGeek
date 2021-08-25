@@ -1,6 +1,5 @@
 package intern.BGGStart.tests;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -8,19 +7,19 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static intern.BGGStart.enums.BrowseMenuOption.*;
 import static intern.BGGStart.enums.UserMenuOption.*;
 
-@Disabled
+//@Disabled
 public class AddRandomGameToUserCollectionTest extends BaseTest{
 
-    @ParameterizedTest(name = "{index} => size14={0}, size17={1}")
-    @CsvSource({"14, 17"})
-    void AddRandomGameToUserCollection(int size14, int size17){
+    @ParameterizedTest(name = "{index} => size15={0}, size17={1}")
+    @CsvSource({"15, 17"})
+    void AddRandomGameToUserCollection(int size15, int size17){
         logInUser();
         pages.userHomePage
                 .openBrowseDropDownMenu();
 
         pages.browseMenuDropDown
                 .browserMenuList()
-                .shouldHave(size(size14));
+                .shouldHave(size(size15));
         pages.browseMenuDropDown
                 .menuOption(ALL_BOARDGAMES);
 
@@ -36,10 +35,9 @@ public class AddRandomGameToUserCollectionTest extends BaseTest{
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(size17));
+                .openUserMenuDropDownList();
         pages.userMenuDropDown
-                .menuAction(COLLECTION);
+                .selectMenuAction(COLLECTION);
 
         pages.collectionPage
                 .checkBoardGameCollectionName();
@@ -50,11 +48,10 @@ public class AddRandomGameToUserCollectionTest extends BaseTest{
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(size17));
+                .openUserMenuDropDownList();
 
         pages.userMenuDropDown
-                .menuAction(SIGN_OUT);
+                .selectMenuAction(SIGN_OUT);
         pages.mainHeader
                 .checkIfUserIsLoggedOut();
 

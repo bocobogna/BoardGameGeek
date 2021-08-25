@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.codeborne.selenide.CollectionCondition.size;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-//@Disabled
+@Disabled
 public class CheckLanguageDependenceTest extends BaseTest{
 
     @ParameterizedTest
@@ -20,10 +19,9 @@ public class CheckLanguageDependenceTest extends BaseTest{
             .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(number));
+                .openUserMenuDropDownList();
         pages.userMenuDropDown
-                .menuAction(COLLECTION);
+                .selectMenuAction(COLLECTION);
 
         pages.collectionPage
                 .checkBoardGameCollectionName();
@@ -44,9 +42,8 @@ public class CheckLanguageDependenceTest extends BaseTest{
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(number));
-        pages.userMenuDropDown.menuAction(SIGN_OUT);
+                .openUserMenuDropDownList();
+        pages.userMenuDropDown.selectMenuAction(SIGN_OUT);
 
         pages.mainHeader.checkIfUserIsLoggedOut();
     }

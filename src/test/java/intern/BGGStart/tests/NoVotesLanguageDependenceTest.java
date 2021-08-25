@@ -19,10 +19,9 @@ public class NoVotesLanguageDependenceTest extends BaseTest{
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(number));
+                .openUserMenuDropDownList();
         pages.userMenuDropDown
-                .menuAction(COLLECTION);
+                .selectMenuAction(COLLECTION);
 
         pages.collectionPage
                 .checkBoardGameCollectionName();
@@ -41,10 +40,9 @@ public class NoVotesLanguageDependenceTest extends BaseTest{
 
         pages.userHomePage.openUserDropDownMenu();
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(number));
+                .openUserMenuDropDownList();
         pages.userMenuDropDown
-                .menuAction(SIGN_OUT);
+                .selectMenuAction(SIGN_OUT);
 
         pages.mainHeader
                 .checkIfUserIsLoggedOut();

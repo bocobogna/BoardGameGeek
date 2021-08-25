@@ -1,6 +1,6 @@
 package intern.BGGStart.tests;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -10,39 +10,49 @@ import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 import static intern.BGGStart.utils.DataResources.*;
 
 @Disabled
-public class EditInfoAboutUserTest extends BaseTest{
+public class EditInfoAboutUserTest extends BaseTest {
 
     @ParameterizedTest
     @ValueSource(ints = {17})
     public void editInfoAboutUser(int number) {
         logInUser();
-        pages.userHomePage
+
+        pages.mainHeader
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(number));
-        pages.userMenuDropDown.menuAction(PROFILE);
+                .openUserMenuDropDownList();
+        pages.userMenuDropDown
+                .selectMenuAction(PROFILE);
 
-        pages.userProfilePage.checkIfEditProfileElementsAreVisible()
+        pages.userProfilePage
+                .checkEditProfileElementsAreVisible()
                 .goToEditUserDetails();
 
         pages.editUserDetailsPage
                 .checkEditUserDetailHeaderVisibility()
-                .editUserDetails();
+                .setUserDetails()
+                .clickSubmit();
 
-        pages.userProfilePage.checkIfProfileWasUpdated()
-                .checkUserFirstAndLastName(firstName, lastName)
-                .checkIfCountryAndCityNameWasUpdated(countryName, cityName);
-
-        pages.userHomePage
+        pages.mainHeader
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
-                .userMenuDropDownList()
-                .shouldHave(size(number));
+                .openUserMenuDropDownList();
         pages.userMenuDropDown
-                .menuAction(SIGN_OUT);
+                .selectMenuAction(PROFILE);
+
+        pages.userProfilePage
+                .verifyUserFirstAndLastName(firstName, lastName)
+                .verifyCountryAndCityName(countryName, cityName);
+
+        pages.mainHeader
+                .openUserDropDownMenu();
+
+        pages.userMenuDropDown
+                .openUserMenuDropDownList();
+        pages.userMenuDropDown
+                .selectMenuAction(SIGN_OUT);
 
         pages.mainHeader
                 .checkIfUserIsLoggedOut();

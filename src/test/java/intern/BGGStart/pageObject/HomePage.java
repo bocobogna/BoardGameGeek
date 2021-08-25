@@ -9,17 +9,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class HomePage {
 
-    private SelenideElement signInLink = $(byXpath("//button[@login-required]"));
+    private SelenideElement signInLink = $(byXpath("//a[@ggloginbutton]"));
 
     public HomePage open() {
         Selenide.open("");
-        return this;
-    }
-
-    public HomePage openSignInModal() {
-        signInLink
-                .shouldBe(visible)
-                .click();
         return this;
     }
 

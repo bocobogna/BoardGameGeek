@@ -14,26 +14,26 @@ public class UserProfilePage {
     private SelenideElement countryField = $(byXpath("//b[contains(text(),'Country:')]/following::td[1]"));
     private SelenideElement cityField = $(byXpath("//b[contains(text(),'Town/City:')]/following::td[1]"));
 
-    public UserProfilePage checkIfEditProfileElementsAreVisible(){
+    public UserProfilePage checkEditProfileElementsAreVisible(){
         editProfileElements
                 .shouldBe(visible)
                 .shouldHave(matchesText(".*Games.*Contributions.*Gallery.*"));
         return this;
     }
 
-    public UserProfilePage checkIfProfileWasUpdated (){
+    public UserProfilePage checkProfileWasUpdated(){
         profileUpdatedStatement
                 .shouldBe(visible)
                 .shouldHave(text("Updated Your Profile"));
         return this;
     }
 
-    public UserProfilePage checkUserFirstAndLastName(String firstName, String lastName){
-        $(byXpath("//div[contains(text(),'" + firstName + " " + lastName + "')]")).shouldBe(visible);
+    public UserProfilePage verifyUserFirstAndLastName(String firstName, String lastName){
+        $(byXpath("//div[@data-userid]/div[contains(text(),'" + firstName + " " + lastName + "')]")).shouldBe(visible);
         return this;
     }
 
-    public UserProfilePage checkIfCountryAndCityNameWasUpdated(String countryName, String cityName){
+    public UserProfilePage verifyCountryAndCityName(String countryName, String cityName){
         countryField
                 .shouldBe(visible)
                 .should(matchText(countryName));

@@ -16,7 +16,7 @@ public class BrowseMenuDropDown {
 
     public void menuOption(BrowseMenuOption menuOption) {
         browseMenuDropDown
-                .$$("li")
+                .$$("a")
                 .findBy(text(menuOption.getOption()))
                 .click();
     }
@@ -25,6 +25,6 @@ public class BrowseMenuDropDown {
         return browseMenuDropDown
                 .shouldBe(visible)
                 .should(matchesText(".*All Boardgames.*Categories.*Families.*Random Game.*"))
-                .$$("li");
+                .$$("a");
     }
 }

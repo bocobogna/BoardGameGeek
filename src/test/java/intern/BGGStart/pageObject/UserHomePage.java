@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class UserHomePage {
 
-    private SelenideElement userNameButton = $(byXpath ("//button[@class='btn btn-sm dropdown-toggle']"));
+    private SelenideElement userNameButton = $("gg-my-geek button.dropdown-toggle.btn");
     private SelenideElement browseButton = $(byXpath("//button[contains(text(),'Browse')]"));
 
     public UserHomePage openUserDropDownMenu(){
