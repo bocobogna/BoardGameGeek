@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-@Disabled
+//@Disabled
 public class CheckLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest
@@ -33,22 +33,27 @@ public class CheckLanguageDependenceTest extends BaseTest {
                 .goToGamePageWithUsageOfCollectionsShuffle(gameName);
 
         pages.gamePage
-                .checkIfGameNameIsEqualToGameNameFromUserCollection()
+                .checkIfGameNameIsEqualToGameNameFromUserCollection(gameName);
+
+        String gameID = pages.gamePage
                 .getGameID();
 
         pages.api
-                .getLanguageDependence();
+                .getLanguageDependence(gameID);
 
         pages.gamePage
                 .checkIfMostVotedLanguageDependenceValueIsDisplayed();
 
-        pages.userHomePage
+        pages.mainHeader
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
                 .openUserMenuDropDownList();
-        pages.userMenuDropDown.selectMenuAction(SIGN_OUT);
 
-        pages.mainHeader.checkIfUserIsLoggedOut();
+        pages.userMenuDropDown
+                .selectMenuAction(SIGN_OUT);
+
+        pages.mainHeader
+                .checkIfUserIsLoggedOut();
     }
 }

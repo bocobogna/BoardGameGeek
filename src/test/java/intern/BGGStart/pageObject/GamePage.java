@@ -22,23 +22,22 @@ public class GamePage {
     private SelenideElement gameAddedConfirmationNotify = $(byXpath("//span[contains(text(),'Item added to')]"));
     private SelenideElement gameHeaderTitle = $("h1 a");
 
-    public GamePage checkIfGameNameIsEqualToGameNameFromUserCollection() {
+    public GamePage checkIfGameNameIsEqualToGameNameFromUserCollection(String gameName) {
         gameHeaderTitle
                 .shouldBe(visible)
-                .should(matchText(gameNameShuffleFromCollection));
+                .should(matchText(".*" + gameName + ".*"));
         return this;
     }
 
-    public GamePage checkIfGameNameIsEqualToGameNameFromAllBoardGames(String gameTitle) {
+    public GamePage checkIfGameNameIsEqualToGameNameFromAllBoardGames(String gameName) {
         gameHeaderTitle
                 .shouldBe(visible)
-                .should(matchText(".*" + gameTitle + ".*"));
+                .should(matchText(".*" + gameName + ".*"));
         return this;
     }
 
-    public GamePage getGameID() {
-        itemID = itemIDValue.getText().substring(13);
-        return this;
+    public String getGameID() {
+        return itemIDValue.getText().substring(13);
     }
 
     public SelenideElement checkIfMostVotedLanguageDependenceValueIsDisplayed() {

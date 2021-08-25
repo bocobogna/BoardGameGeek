@@ -8,12 +8,16 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-@Disabled
+//@Disabled
 public class NoVotesLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest
     @ValueSource(ints = {17})
     public void CheckLanguageDependence(int number) {
+
+        String gameNoVotes = "Bliss";
+        String gameID= "328272";
+
         logInUser();
         pages.userHomePage
                 .openUserDropDownMenu();
@@ -26,21 +30,23 @@ public class NoVotesLanguageDependenceTest extends BaseTest {
         pages.collectionPage
                 .checkBoardGameCollectionName();
         pages.collectionPage
-                .goToGameWithNoVotes();
+                .goToGameWithNoVotes(gameNoVotes);
 
         pages.gamePage
-                .checkIfGameNameIsEqualToGameNameFromUserCollection()
-                .getGameID();
+                .checkIfGameNameIsEqualToGameNameFromUserCollection(gameNoVotes);
 
         pages.api
-                .getLanguageDependence();
+                .getLanguageDependence(gameID);
 
         pages.gamePage
                 .checkIfMostVotedLanguageDependenceValueIsDisplayed();
 
-        pages.userHomePage.openUserDropDownMenu();
+        pages.mainHeader
+                .openUserDropDownMenu();
+
         pages.userMenuDropDown
                 .openUserMenuDropDownList();
+
         pages.userMenuDropDown
                 .selectMenuAction(SIGN_OUT);
 

@@ -36,10 +36,10 @@ public class CollectionPage {
         return this;
     }
 
-    public CollectionPage goToGameWithNoVotes() {
+    public CollectionPage goToGameWithNoVotes(String gameName) {
         userGamesCollection = gamesCollection.texts();
-        gameNameShuffleFromCollection = "5211"; // Age of Steam
-        gamesCollection.findBy(text(gameNameShuffleFromCollection)).click();
+//        gameNameShuffleFromCollection = "328272"; // Bliss
+        gamesCollection.findBy(text(gameName)).click();
         return this;
     }
 
