@@ -17,11 +17,11 @@ public class UserMenuDropDown {
     public UserMenuDropDown openUserMenuDropDownList() {
         getUserMenuDropDown
                 .shouldBe(visible)
-                .should(matchesText(".*Profile.*Collection.*Account.*GeekExchanges.*"));
+                .should(matchText(".*Profile.*Collection.*Account.*GeekExchanges.*"));
         return this;
     }
 
-    public void selectMenuAction(UserMenuOption menuOption){
+    public void selectMenuAction(UserMenuOption menuOption) {
         userMenuDropDownElements
                 .findBy(text(menuOption.getOption()))
                 .click();

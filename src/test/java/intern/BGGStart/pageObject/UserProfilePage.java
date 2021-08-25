@@ -14,26 +14,26 @@ public class UserProfilePage {
     private SelenideElement countryField = $(byXpath("//b[contains(text(),'Country:')]/following::td[1]"));
     private SelenideElement cityField = $(byXpath("//b[contains(text(),'Town/City:')]/following::td[1]"));
 
-    public UserProfilePage checkEditProfileElementsAreVisible(){
+    public UserProfilePage checkEditProfileElementsAreVisible() {
         editProfileElements
                 .shouldBe(visible)
-                .shouldHave(matchesText(".*Games.*Contributions.*Gallery.*"));
+                .shouldHave(matchText(".*Games.*Contributions.*Gallery.*"));
         return this;
     }
 
-    public UserProfilePage checkProfileWasUpdated(){
+    public UserProfilePage checkProfileWasUpdated() {
         profileUpdatedStatement
                 .shouldBe(visible)
                 .shouldHave(text("Updated Your Profile"));
         return this;
     }
 
-    public UserProfilePage verifyUserFirstAndLastName(String firstName, String lastName){
+    public UserProfilePage verifyUserFirstAndLastName(String firstName, String lastName) {
         $(byXpath("//div[@data-userid]/div[contains(text(),'" + firstName + " " + lastName + "')]")).shouldBe(visible);
         return this;
     }
 
-    public UserProfilePage verifyCountryAndCityName(String countryName, String cityName){
+    public UserProfilePage verifyCountryAndCityName(String countryName, String cityName) {
         countryField
                 .shouldBe(visible)
                 .should(matchText(countryName));
@@ -43,7 +43,7 @@ public class UserProfilePage {
         return this;
     }
 
-    public UserProfilePage goToEditUserDetails(){
+    public UserProfilePage goToEditUserDetails() {
         editProfileDetailsHeader
                 .shouldBe(visible)
                 .click();

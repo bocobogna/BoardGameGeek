@@ -9,7 +9,7 @@ import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
 @Disabled
-public class NoVotesLanguageDependenceTest extends BaseTest{
+public class NoVotesLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest
     @ValueSource(ints = {17})

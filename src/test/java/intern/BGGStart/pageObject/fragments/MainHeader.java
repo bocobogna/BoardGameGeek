@@ -42,7 +42,7 @@ public class MainHeader {
         return this;
     }
 
-    public MainHeader openUserDropDownMenu(){
+    public MainHeader openUserDropDownMenu() {
         userNameButton
                 .shouldBe(visible)
                 .click();

@@ -2,6 +2,7 @@ package intern.BGGStart.pageObject;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+
 import java.util.List;
 import java.util.Collections;
 
@@ -18,30 +19,33 @@ public class CollectionPage {
     private ElementsCollection gamesCollection = $$(byXpath("//div[contains(@id,'results_objectname')]/a"));
     private SelenideElement userBoardGameCollectionName = $("div.fl.sf");
 
-    public SelenideElement checkBoardGameCollectionName(){
+    public SelenideElement checkBoardGameCollectionName() {
         return userBoardGameCollectionName
                 .shouldBe(visible)
                 .shouldHave(matchText("Board Game Collection"));
     }
 
-    public CollectionPage goToGamePageWithUsageOfCollectionsShuffle(){
+    public String getGameNameShuffleFromCollection() {
         userGamesCollection = gamesCollection.texts();
         Collections.shuffle(userGamesCollection);
-        gameNameShuffleFromCollection = userGamesCollection.get(0);
-        gamesCollection.findBy(text(gameNameShuffleFromCollection)).click();
+        return userGamesCollection.get(0);
+    }
+
+    public CollectionPage goToGamePageWithUsageOfCollectionsShuffle(String gameName) {
+        gamesCollection.findBy(text(gameName)).click();
         return this;
     }
 
-    public CollectionPage goToGameWithNoVotes(){
+    public CollectionPage goToGameWithNoVotes() {
         userGamesCollection = gamesCollection.texts();
         gameNameShuffleFromCollection = "5211"; // Age of Steam
         gamesCollection.findBy(text(gameNameShuffleFromCollection)).click();
         return this;
     }
 
-    public Boolean checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection(){
+    public Boolean checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection(String gameTitle) {
         List<String> userGamesCollection = gamesCollection.texts();
-        result = userGamesCollection.contains(randomGameNameShuffleFromAllBoardGames);
+        result = userGamesCollection.contains(gameTitle);
         return result;
     }
 }

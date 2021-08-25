@@ -15,7 +15,7 @@ public class SignInModal {
     private SelenideElement loginForm = $("div.modal-content");
     private SelenideElement signInButton = $(byXpath("//form[@name='loginform']//button[@type='submit']"));
 
-    public SignInModal loginUser (){
+    public SignInModal loginUser() {
         loginForm
                 .shouldBe(visible)
                 .shouldHave(matchText("Sign in"));

@@ -11,7 +11,7 @@ public class UserHomePage {
     private SelenideElement userNameButton = $("gg-my-geek button.dropdown-toggle.btn");
     private SelenideElement browseButton = $(byXpath("//button[contains(text(),'Browse')]"));
 
-    public UserHomePage openUserDropDownMenu(){
+    public UserHomePage openUserDropDownMenu() {
         userNameButton
                 .shouldBe(visible)
                 .click();
@@ -23,7 +23,7 @@ public class UserHomePage {
                 .shouldBe(visible)
                 .click();
         return this;
-     }
+    }
 
 
 }

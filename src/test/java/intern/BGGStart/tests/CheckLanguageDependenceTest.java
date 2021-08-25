@@ -8,15 +8,15 @@ import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
 @Disabled
-public class CheckLanguageDependenceTest extends BaseTest{
+public class CheckLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest
     @ValueSource(ints = {17})
-    public void CheckLanguageDependence(int number){
+    public void CheckLanguageDependence(int number) {
         logInUser();
 
         pages.userHomePage
-            .openUserDropDownMenu();
+                .openUserDropDownMenu();
 
         pages.userMenuDropDown
                 .openUserMenuDropDownList();
@@ -25,8 +25,12 @@ public class CheckLanguageDependenceTest extends BaseTest{
 
         pages.collectionPage
                 .checkBoardGameCollectionName();
+
+        String gameName = pages.collectionPage
+                .getGameNameShuffleFromCollection();
+
         pages.collectionPage
-                .goToGamePageWithUsageOfCollectionsShuffle();
+                .goToGamePageWithUsageOfCollectionsShuffle(gameName);
 
         pages.gamePage
                 .checkIfGameNameIsEqualToGameNameFromUserCollection()

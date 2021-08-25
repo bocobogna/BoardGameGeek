@@ -17,22 +17,22 @@ public class GamePage {
     public static String itemID;
     private SelenideElement itemIDValue = $("div.game-itemid");
     private SelenideElement languageDependenceValue = $("div.feature-description span.ng-binding");
-    private SelenideElement addToCollectionButton = $(byXpath("//div[@class='toolbar-actions']//button[contains(@class, 'toolbar-action-full')]"));
+    private SelenideElement addToCollectionButton = $(byXpath("//div[@class='toolbar-action']//button[contains(@class, 'toolbar-action-full')]"));
     private SelenideElement addToCollectionSaveButton = $(byXpath("//button[contains(text(),'Save')]"));
     private SelenideElement gameAddedConfirmationNotify = $(byXpath("//span[contains(text(),'Item added to')]"));
-    private SelenideElement gameHeaderTitle = $("div.game-primary.ng-scope div.game-header-title-info a");
+    private SelenideElement gameHeaderTitle = $("h1 a");
 
-    public GamePage checkIfGameNameIsEqualToGameNameFromUserCollection(){
+    public GamePage checkIfGameNameIsEqualToGameNameFromUserCollection() {
         gameHeaderTitle
                 .shouldBe(visible)
                 .should(matchText(gameNameShuffleFromCollection));
         return this;
     }
 
-    public GamePage checkIfGameNameIsEqualToGameNameFromAllBoardGames(){
+    public GamePage checkIfGameNameIsEqualToGameNameFromAllBoardGames(String gameTitle) {
         gameHeaderTitle
                 .shouldBe(visible)
-                .should(matchText(randomGameNameShuffleFromAllBoardGames));
+                .should(matchText(".*" + gameTitle + ".*"));
         return this;
     }
 
@@ -56,6 +56,6 @@ public class GamePage {
                 .hover().pressEnter();
         gameAddedConfirmationNotify
                 .should(appear);
-        return  this;
+        return this;
     }
 }

@@ -26,7 +26,7 @@ public abstract class BaseTest {
             WebDriver webDriver = new ChromeDriver(options);
             setWebDriver(webDriver);
         }
-        Configuration.timeout = 8000;
+        Configuration.timeout = 5000;
         Configuration.baseUrl = "https://boardgamegeek.com";
     }
 
@@ -36,7 +36,7 @@ public abstract class BaseTest {
         WebDriverRunner.driver().getWebDriver().quit();
     }
 
-    protected void logInUser(){
+    protected void logInUser() {
         pages.homePage
                 .open();
 

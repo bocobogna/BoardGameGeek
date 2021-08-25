@@ -8,13 +8,13 @@ import static intern.BGGStart.enums.BrowseMenuOption.*;
 import static intern.BGGStart.enums.UserMenuOption.*;
 
 //@Disabled
-public class AddRandomGameToUserCollectionTest extends BaseTest{
+public class AddRandomGameToUserCollectionTest extends BaseTest {
 
     @ParameterizedTest(name = "{index} => size15={0}, size17={1}")
     @CsvSource({"15, 17"})
-    void AddRandomGameToUserCollection(int size15, int size17){
+    void AddRandomGameToUserCollection(int size15, int size17) {
         logInUser();
-        pages.userHomePage
+        pages.mainHeader
                 .openBrowseDropDownMenu();
 
         pages.browseMenuDropDown
@@ -24,14 +24,18 @@ public class AddRandomGameToUserCollectionTest extends BaseTest{
                 .menuOption(ALL_BOARDGAMES);
 
         pages.allGamesPage.checkIfAllGamesPageIsOpened()
-                .openRandomPageWithGames()
-                .goToRandomGamePage();
+                .openRandomPageWithGames();
+
+        String gameTitle = pages.allGamesPage.getRandomGameTitle();
+
+        pages.allGamesPage
+                .goToRandomGamePage(gameTitle);
 
         pages.gamePage
-                .checkIfGameNameIsEqualToGameNameFromAllBoardGames()
+                .checkIfGameNameIsEqualToGameNameFromAllBoardGames(gameTitle)
                 .addGameToCollection();
 
-        pages.userHomePage
+        pages.mainHeader
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown
@@ -42,9 +46,9 @@ public class AddRandomGameToUserCollectionTest extends BaseTest{
         pages.collectionPage
                 .checkBoardGameCollectionName();
         pages.collectionPage
-                .checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection();
+                .checkIfRandomGameShuffledFromAllBoardGamesIsPresentInUserCollection(gameTitle);
 
-        pages.userHomePage
+        pages.mainHeader
                 .openUserDropDownMenu();
 
         pages.userMenuDropDown

@@ -21,10 +21,10 @@ public class BrowseMenuDropDown {
                 .click();
     }
 
-    public ElementsCollection browserMenuList(){
+    public ElementsCollection browserMenuList() {
         return browseMenuDropDown
                 .shouldBe(visible)
-                .should(matchesText(".*All Boardgames.*Categories.*Families.*Random Game.*"))
+                .should(matchText(".*All Boardgames.*Categories.*Families.*Random Game.*"))
                 .$$("a");
     }
 }

@@ -15,17 +15,16 @@ import static com.codeborne.selenide.Selenide.$$;
 public class AllGamesPage {
 
     private String lastPageStr;
-    public static String randomGameNameShuffleFromAllBoardGames;
     private Integer lastPageInt;
     private SelenideElement collectionTable = $("#collectionitems");
     private SelenideElement maxPageValue = $(byXpath("//div[@class='fr']//a[@title='last page']"));
     private ElementsCollection gamesCollection = $$(byXpath("//div[contains(@id, 'results_objectname')]/a"));
 
-    public AllGamesPage checkIfAllGamesPageIsOpened(){
+    public AllGamesPage checkIfAllGamesPageIsOpened() {
         collectionTable
                 .shouldBe(visible)
                 .$$("tr")
-                .shouldHaveSize(101);
+                .shouldHave(size(101));
         return this;
     }
 
@@ -33,18 +32,21 @@ public class AllGamesPage {
         lastPageStr = maxPageValue.getText();
         lastPageStr = lastPageStr.substring(1, lastPageStr.length() - 1);
         lastPageInt = Integer.parseInt(lastPageStr);
-        int helper = ((int)(Math.random() * lastPageInt) + 1);
+        int helper = ((int) (Math.random() * lastPageInt) + 1);
         Selenide.open("https://boardgamegeek.com/browse/boardgame/page/" + helper);
         gamesCollection
                 .shouldHave(size(100));
         return this;
     }
 
-    public AllGamesPage goToRandomGamePage() {
+    public String getRandomGameTitle() {
         List<String> gamesAvailableOnChosenPage = gamesCollection.texts();
         Collections.shuffle(gamesAvailableOnChosenPage);
-        randomGameNameShuffleFromAllBoardGames = gamesAvailableOnChosenPage.get(0);
-        gamesCollection.findBy(text(randomGameNameShuffleFromAllBoardGames)).click();
+        return gamesAvailableOnChosenPage.get(0);
+    }
+
+    public AllGamesPage goToRandomGamePage(String gameTitle) {
+        gamesCollection.findBy(text(gameTitle)).click();
         return this;
     }
 
