@@ -3,7 +3,9 @@ package intern.BGGStart.tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import intern.BGGStart.pageObject.*;
+import intern.BGGStart.utils.Utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,11 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 public abstract class BaseTest {
 
     Pages pages = new Pages();
+
+    String info = Utils.getPathToResourcesFiles("Users.json");
+    JSONObject userInfo = (JSONObject) Utils.readJsonFromFile(info).get("ssj4User");
+    String userName = (String) userInfo.get("userName");
+    String userPassword = (String) userInfo.get("userPassword");
 
     @BeforeAll
     public static void setup() {
@@ -45,7 +52,7 @@ public abstract class BaseTest {
                 .checkIfUserIsLoggedOut();
 
         pages.loginForm
-                .loginUser()
+                .loginUser(userName, userPassword)
                 .clickSingIn();
 
         pages.mainHeader

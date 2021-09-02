@@ -1,12 +1,10 @@
 package intern.BGGStart.pageObject.fragments;
 
 import com.codeborne.selenide.SelenideElement;
-import intern.BGGStart.pageObject.EditUserDetailsPage;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-import static intern.BGGStart.utils.DataResources.*;
 
 public class SignInModal {
 
@@ -15,7 +13,7 @@ public class SignInModal {
     private SelenideElement loginForm = $("div.modal-content");
     private SelenideElement signInButton = $(byXpath("//form[@name='loginform']//button[@type='submit']"));
 
-    public SignInModal loginUser() {
+    public SignInModal loginUser(String userName, String userPassword) {
         loginForm
                 .shouldBe(visible)
                 .shouldHave(matchText("Sign in"));
@@ -25,7 +23,7 @@ public class SignInModal {
                 .shouldHave(value(userName));
         passwordInput
                 .shouldBe(visible)
-                .val(password)
+                .val(userPassword)
                 .shouldNot(empty);
         return this;
     }
