@@ -3,4 +3,8 @@
     "userName": "ssj4",
     "userPassword": "qweasdzxc"
   }
+  "invalidUser": {
+    "userName": "ImOutOfBlue",
+    "userPassword": "DoNotKnow"
+  }
 }

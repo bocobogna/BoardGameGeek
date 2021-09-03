@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-//@Disabled
+@Disabled
 public class CheckLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest

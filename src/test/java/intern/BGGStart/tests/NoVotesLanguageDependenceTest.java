@@ -8,7 +8,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-//@Disabled
+@Disabled
 public class NoVotesLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest

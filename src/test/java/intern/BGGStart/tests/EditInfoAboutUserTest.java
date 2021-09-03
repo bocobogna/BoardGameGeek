@@ -1,5 +1,6 @@
 package intern.BGGStart.tests;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -10,7 +11,7 @@ import static intern.BGGStart.enums.UserMenuOption.PROFILE;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@Disabled
+@Disabled
 public class EditInfoAboutUserTest extends BaseTest {
 
     public final String firstName = "Master";

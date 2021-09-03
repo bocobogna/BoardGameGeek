@@ -2,7 +2,7 @@ package intern.BGGStart.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import intern.BGGStart.pageObject.*;
+import intern.BGGStart.pageObject.Pages;
 import intern.BGGStart.utils.Utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.json.simple.JSONObject;
@@ -33,7 +33,7 @@ public abstract class BaseTest {
             WebDriver webDriver = new ChromeDriver(options);
             setWebDriver(webDriver);
         }
-        Configuration.timeout = 5000;
+        Configuration.timeout = 10000;
         Configuration.baseUrl = "https://boardgamegeek.com";
     }
 

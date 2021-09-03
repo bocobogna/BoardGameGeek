@@ -22,5 +22,4 @@ public class Pages {
     public UserMenuDropDown userMenuDropDown = new UserMenuDropDown();
 
     public Api api = new Api();
-
 }
