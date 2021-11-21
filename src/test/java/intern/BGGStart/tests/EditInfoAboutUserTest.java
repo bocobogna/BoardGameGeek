@@ -11,7 +11,6 @@ import static intern.BGGStart.enums.UserMenuOption.PROFILE;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 public class EditInfoAboutUserTest extends BaseTest {
 
     public final String firstName = "Master";

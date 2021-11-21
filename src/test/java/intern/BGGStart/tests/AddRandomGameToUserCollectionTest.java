@@ -1,6 +1,5 @@
 package intern.BGGStart.tests;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -9,12 +8,11 @@ import static intern.BGGStart.enums.BrowseMenuOption.ALL_BOARDGAMES;
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-@Disabled
 public class AddRandomGameToUserCollectionTest extends BaseTest {
 
-    @ParameterizedTest(name = "{index} => size15={0}, size17={1}")
-    @CsvSource({"15, 17"})
-    void AddRandomGameToUserCollection(int size15, int size17) {
+    @ParameterizedTest(name = "{index} => size15={0}")
+    @CsvSource({"15"})
+    void AddRandomGameToUserCollection(int size15) {
         logInUser();
         pages.mainHeader
                 .openBrowseDropDownMenu();

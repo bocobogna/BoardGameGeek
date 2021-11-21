@@ -1,13 +1,11 @@
 package intern.BGGStart.tests;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static intern.BGGStart.enums.UserMenuOption.COLLECTION;
 import static intern.BGGStart.enums.UserMenuOption.SIGN_OUT;
 
-@Disabled
 public class CheckLanguageDependenceTest extends BaseTest {
 
     @ParameterizedTest

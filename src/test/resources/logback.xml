@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %yellow(%msg) %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/logs/logFile.html</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <append>true</append>
+        <!--        <immediateFlush>true</immediateFlush>-->
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <charset>UTF-8</charset>
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>%d{HH:mm:ss.SSS}%thread%level%logger%line%msg</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="DEBUG_FILE"/>
+    </root>
+
+</configuration>
