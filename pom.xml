@@ -20,7 +20,7 @@
         <seleniumVersion>3.141.59</seleniumVersion>
         <selenideVersion>5.24.3</selenideVersion>
         <slf4jVersion>1.7.32</slf4jVersion>
-        <logbackVersion>1.2.6</logbackVersion>
+        <logbackVersion>1.2.13</logbackVersion>
         <jsonVersion>1.1.1</jsonVersion>
     </properties>
 
